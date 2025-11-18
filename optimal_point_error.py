@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 sigma = 1.2e-6        # Rayleigh scale for pointing error (in radians)
 B_nom = 10.0          # Nominal ISL bandwidth in Gbps
-N = 100000            # Number of Monte Carlo samples
+N = 1000000            # Number of Monte Carlo samples
 
 # Beam-walk / misalignment loss model:
 # Effective bandwidth = B_nom * exp( - (Pe/sigma)^2 )
@@ -65,3 +65,4 @@ plt.savefig("/mnt/data/pe_vs_rebuild.png", dpi=300)
 
 # Output filenames for convenience
 "/mnt/data/pe_vs_bw.png", "/mnt/data/pe_vs_rebuild.png"
+
