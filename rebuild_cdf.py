@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # -----------------------------
 sigma = 1.2e-6          # Rayleigh scale for pointing error (radians)
 B_nom_Gbps = 0.001      # nominal ISL bandwidth (Gbps) -> 1 Mbps
-samples = 200_000       # Monte Carlo samples
+samples = 1000_000       # Monte Carlo samples
 
 # data to rebuild: (k-1)*S = 7 * 64 MB = 0.448 GB = 3.584 Gb
 data_Gb = 0.448 * 8.0   # gigabits
@@ -48,3 +48,4 @@ print('Saved: rebuild_cdf_realistic.png and rebuild_cdf_data.npz')
 # compute percentiles (approx)
 for q in [0.25, 0.5, 0.75, 0.99]:
     print(f'{int(q*100)}th percentile: {np.percentile(Trebuild_hours, q*100):.2f} hours')
+
