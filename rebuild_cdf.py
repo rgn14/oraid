@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""
-O-RAID Parity Rebuild Simulation for Satellite Constellation (N = 16)
-Models:
- - ISL misalignment (Rayleigh)
- - Effective bandwidth degradation
- - Availability factor
- - Latency impact
- - Rebuild time distribution (CDF)
-"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -76,6 +67,7 @@ for q in [0.25, 0.5, 0.75, 0.99]:
     print(f"  {int(q*100)}th percentile: {np.percentile(Trebuild_hours, q*100):.2f} hours")
 
 print("\nSimulation Complete for N = 16\n")
+
 
 
 
