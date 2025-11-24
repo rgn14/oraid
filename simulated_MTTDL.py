@@ -1,11 +1,4 @@
 #!/usr/bin/env python3
-# =====================================================================
-# ORAID CTMC MTTDL Curves (Models A, B, C)
-# Valid constellation sizes: N = 10, 12, 16, 20, 30
-# Guaranteed non-singular. Suitable for publication.
-# =====================================================================
-
-#!/usr/bin/env python3
 """
 Robust CTMC MTTDL solver for ORAID (Models A, B, C)
 - Enforces safe m (1 <= m <= N-2)
@@ -156,3 +149,4 @@ plt.legend()
 plt.tight_layout()
 plt.savefig('mttdl_curves_ABC.png', dpi=300)
 print('Saved: mttdl_curves_ABC.png, mttdl_curves_ABC.csv')
+
