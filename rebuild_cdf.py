@@ -28,20 +28,20 @@ data_Gb = 0.448 * 8.0   # gigabits
 # Monte Carlo Sampling
 # -----------------------------
 
-# 1️⃣ Random Rayleigh pointing error (radians)
+# Random Rayleigh pointing error (radians)
 Pe = np.random.rayleigh(scale=sigma, size=samples)
 
-# 2️⃣ Effective bandwidth from beam-walk penalty
+# Effective bandwidth from beam-walk penalty
 B_eff_Gbps = B_nom_Gbps * np.exp(-(Pe / sigma)**2)   # Gbps
 
-# 3️⃣ Availability (random variation of link uptime 45%–85%)
+# Availability (random variation of link uptime 45%–85%)
 alpha = np.random.uniform(0.45, 0.85, size=samples)
 
-# 4️⃣ Random one-way latency impact (3 to 18 ms)
+# Random one-way latency impact (3 to 18 ms)
 latency_ms = np.random.uniform(3.0, 18.0, size=samples)
 latency_hours = latency_ms / 1000.0 / 3600.0  # seconds -> hours
 
-# 5️⃣ Rebuild time:
+# Rebuild time:
 # time = data bits / throughput bits per second  -> seconds -> hours
 Trebuild_hours = (data_Gb * 1e9 / (alpha * (B_eff_Gbps * 1e9))) / 3600.0 + latency_hours
 
@@ -66,16 +66,17 @@ plt.savefig('rebuild_cdf_realistic_N16.png', dpi=300)
 np.savez('rebuild_cdf_data_N16.npz', trebuild=Trebuild_hours,
          pe=Pe, beff=B_eff_Gbps, alpha=alpha)
 
-print("\n📌 Saved: rebuild_cdf_realistic_N16.png and rebuild_cdf_data_N16.npz")
+print("\n Saved: rebuild_cdf_realistic_N16.png and rebuild_cdf_data_N16.npz")
 
 # -----------------------------
 # Print percentile statistics
 # -----------------------------
-print("\n📊 Rebuild Time Percentiles (Hours):")
+print("\nRebuild Time Percentiles (Hours):")
 for q in [0.25, 0.5, 0.75, 0.99]:
     print(f"  {int(q*100)}th percentile: {np.percentile(Trebuild_hours, q*100):.2f} hours")
 
-print("\n🛰️ Simulation Complete for N = 16\n")
+print("\nSimulation Complete for N = 16\n")
+
 
 
 
