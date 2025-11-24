@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""
-Robust CTMC MTTDL solver for ORAID (Models A, B, C)
-- Enforces safe m (1 <= m <= N-2)
-- Uses consistent units (years)
-- Attempts np.linalg.solve then falls back to regularized solve or pseudo-inverse
-- Prints diagnostics when fallbacks are used
-"""
+
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -149,4 +143,5 @@ plt.legend()
 plt.tight_layout()
 plt.savefig('mttdl_curves_ABC.png', dpi=300)
 print('Saved: mttdl_curves_ABC.png, mttdl_curves_ABC.csv')
+
 
