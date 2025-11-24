@@ -117,20 +117,20 @@ print("CALIBRATED data size:", data_TB_calibrated, "TB\n")
 # 4) FINAL CALIBRATED MONTE CARLO RUN
 # ================================================================
 mean_Trebuild_final, Trebuild_samples = simulate_trebuild_mean(
-    data_TB_calibrated, BISL_mean_calibrated, N=200000
+    data_TB_calibrated, BISL_mean_calibrated, N=1000000
 )
 
 # Now compute final Beff using calibrated BISL mean
 # (Reuse simulate_beff_mean with larger N)
-final_Beff_mean = simulate_beff_mean(BISL_mean_calibrated, N=200000)
+final_Beff_mean = simulate_beff_mean(BISL_mean_calibrated, N=1000000)
 
 # Get percentiles for reporting
 final_Beff_samples = None
 # generate full samples
 rng = np.random.default_rng(111)
 mu_log_final = np.log(BISL_mean_calibrated) - 0.5*(0.5**2)
-BISL_full = rng.lognormal(mean=mu_log_final, sigma=0.5, size=200000)
-Pe_full = rng.rayleigh(scale=1.2e-6, size=200000)
+BISL_full = rng.lognormal(mean=mu_log_final, sigma=0.5, size=1000000)
+Pe_full = rng.rayleigh(scale=1.2e-6, size=1000000)
 LP_full = 4.3429 * (Pe_full**2)
 Beff_full = BISL_full * 10**(-LP_full/10)
 final_Beff_samples = Beff_full
@@ -153,3 +153,4 @@ print(f"Median(T_rebuild): {np.median(Trebuild_samples):.4f} hours")
 print("Trebuild percentiles (hours):", np.percentile(Trebuild_samples,
                                                     [1,5,25,50,75,95,99]))
 print("==============================================================")
+
