@@ -34,9 +34,9 @@ def simulate_beff_mean(target_mean_BISL,
     return Beff.mean()
 
 
-# ================================================================
+
 # 2) BISECTION SEARCH: find BISL mean giving E[Beff] ≈ 6.3 Gbps
-# ================================================================
+
 Beff_target = 6.30    # desired mean Beff
 tol = 0.02            # tolerance
 low, high = 0.5, 40.0 # search interval in Gbps
@@ -59,9 +59,9 @@ print("Produces simulated E[Beff] ≈", m, "Gbps")
 print("===============================================\n")
 
 
-# ================================================================
+
 # 3) STEP: compute data size needed for Trebuild ≈ 9.4 hours
-# ================================================================
+
 Trebuild_target = 9.4   # hours
 
 # First we must estimate current Trebuild mean using some initial guess.
@@ -113,9 +113,9 @@ print("Scale factor:", scale_factor)
 print("CALIBRATED data size:", data_TB_calibrated, "TB\n")
 
 
-# ================================================================
+
 # 4) FINAL CALIBRATED MONTE CARLO RUN
-# ================================================================
+
 mean_Trebuild_final, Trebuild_samples = simulate_trebuild_mean(
     data_TB_calibrated, BISL_mean_calibrated, N=1000000
 )
@@ -135,9 +135,9 @@ LP_full = 4.3429 * (Pe_full**2)
 Beff_full = BISL_full * 10**(-LP_full/10)
 final_Beff_samples = Beff_full
 
-# ================================================================
+
 # 5) PRINT RESULTS
-# ================================================================
+
 print("==============================================================")
 print("FINAL CALIBRATED RESULTS")
 print("--------------------------------------------------------------")
@@ -153,4 +153,5 @@ print(f"Median(T_rebuild): {np.median(Trebuild_samples):.4f} hours")
 print("Trebuild percentiles (hours):", np.percentile(Trebuild_samples,
                                                     [1,5,25,50,75,95,99]))
 print("==============================================================")
+
 
